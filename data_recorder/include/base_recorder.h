@@ -13,11 +13,22 @@ public:
 
 protected:
 	std::string topicName;
-	std::string topicType;
 	std::string topicTitle;
 	ros::Subscriber subscriber;
 	bool flagDataReceived = false;
 
+};
+
+template<class T, class U>
+struct IsSameType
+{
+	enum {result=false};
+};
+
+template<class T>
+struct IsSameType<T, T>
+{
+	enum {result=true};
 };
 
 #endif

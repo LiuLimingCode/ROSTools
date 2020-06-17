@@ -11,7 +11,7 @@ class ImuRecorder : public BaseRecorder
 {
 
 public:
-	ImuRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle);
+	ImuRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
 	~ImuRecorder() = default;
 
 	std::string printfDataTitle(void);

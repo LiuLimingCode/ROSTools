@@ -42,10 +42,9 @@ std::string ImuRecorder::printfData(void)
 	return(str);
 }
 
-ImuRecorder::ImuRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle)
+ImuRecorder::ImuRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle)
 {
 	this->topicName = topicName;
-	this->topicType = topicType;
 	this->topicTitle = topicTitle;
 
 	subscriber = node.subscribe<sensor_msgs::Imu>(topicName, 1, &ImuRecorder::DataCallBack, this);

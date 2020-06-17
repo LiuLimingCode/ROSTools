@@ -11,7 +11,7 @@ class OdometryRecorder : public BaseRecorder
 {
 
 public:
-	OdometryRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle);
+	OdometryRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
 	~OdometryRecorder() = default;
 
 	std::string printfDataTitle(void);

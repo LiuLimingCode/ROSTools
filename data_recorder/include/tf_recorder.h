@@ -12,7 +12,7 @@ class TFRecorder : public BaseRecorder
 {
 
 public:
-	TFRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle, std::string& targetFrame, std::string& sourceFrame);
+	TFRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle, std::string& targetFrame, std::string& sourceFrame);
 	~TFRecorder() = default;
 
 	std::string printfDataTitle(void);

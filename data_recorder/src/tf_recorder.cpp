@@ -36,10 +36,9 @@ std::string TFRecorder::printfData(void)
 	return(str);
 }
 
-TFRecorder::TFRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle, std::string& targetFrame, std::string& sourceFrame)
+TFRecorder::TFRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle, std::string& targetFrame, std::string& sourceFrame)
 {
 	this->topicName = topicName;
-	this->topicType = topicType;
 	this->topicTitle = topicTitle;
     this->targetFrame = targetFrame;
     this->sourceFrame = sourceFrame;

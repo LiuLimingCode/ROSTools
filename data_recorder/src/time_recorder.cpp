@@ -1,6 +1,7 @@
 #include "time_recorder.h"
 
-std::string TimeRecorder::printfDataTitle(void)
+template<typename T>
+std::string TimeRecorder<T>::printfDataTitle(void)
 {
 	std::string str
 		= topicTitle + ".time.data" + "\t";
@@ -8,14 +9,17 @@ std::string TimeRecorder::printfDataTitle(void)
 	return(str);
 }
 
-std::string TimeRecorder::printfData(void)
+template<typename T>
+std::string TimeRecorder<T>::printfData(void)
 {
 	std::string str;
 	if(flagDataReceived)
 	{
+		double time = dataReceived.data.sec + (double)dataReceived.data.nsec / (double)1e9;
+		
 		flagDataReceived = false;
 
-		str = std::to_string(dataReceived.data.sec) + "." + std::to_string(dataReceived.data.nsec) + "\t";
+		str = std::to_string(time) + "\t";
 	}
 	else
 	{
@@ -25,19 +29,23 @@ std::string TimeRecorder::printfData(void)
 	return(str);
 }
 
-TimeRecorder::TimeRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle)
+template<typename T>
+TimeRecorder<T>::TimeRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle)
 {
 	this->topicName = topicName;
-	this->topicType = topicType;
 	this->topicTitle = topicTitle;
 
-	subscriber = node.subscribe<std_msgs::Time>(topicName, 1, &TimeRecorder::DataCallBack, this);
+	subscriber = node.subscribe<T>(topicName, 1, &TimeRecorder::DataCallBack, this);
 
 	flagDataReceived = false;
 }
 
-void TimeRecorder::DataCallBack(const std_msgs::Time::ConstPtr& data)
+template<typename T>
+void TimeRecorder<T>::DataCallBack(const boost::shared_ptr<T const> & data)
 {
 	flagDataReceived = true;
 	dataReceived = *data;
 }
+
+template class TimeRecorder<std_msgs::Time>;
+template class TimeRecorder<std_msgs::Duration>;

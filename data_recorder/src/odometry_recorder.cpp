@@ -48,10 +48,9 @@ std::string OdometryRecorder::printfData(void)
 	return(str);
 }
 
-OdometryRecorder::OdometryRecorder(ros::NodeHandle& node, std::string& topicName, std::string& topicType,std::string& topicTitle)
+OdometryRecorder::OdometryRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle)
 {
 	this->topicName = topicName;
-	this->topicType = topicType;
 	this->topicTitle = topicTitle;
 
 	subscriber = node.subscribe<nav_msgs::Odometry>(topicName, 1, &OdometryRecorder::DataCallBack, this);
