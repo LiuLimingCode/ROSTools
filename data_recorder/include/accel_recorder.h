@@ -13,24 +13,26 @@
 #define STRING_ACCELWITHCOVARIANCE        (std::string("AccelWithCovariance"))
 #define STRING_ACCELWITHCOVARIANCESTAMPED (std::string("AccelWithCovarianceStamped"))
 
-template<typename T>
-class AccelRecorder : public BaseRecorder
-{
+namespace DataRecorder {
 
-public:
-	AccelRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
-	~AccelRecorder() = default;
+	template<typename T>
+	class AccelRecorder : public BaseRecorder
+	{
 
-	std::string printfDataTitle(void);
-	std::string printfData(void);
+	public:
+		AccelRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
+		~AccelRecorder() = default;
 
-	void DataCallBack(const boost::shared_ptr<T const> & data);
+		std::string printfDataTitle(void);
+		std::string printfData(void);
 
-	
-protected:
-	geometry_msgs::Accel dataReceived;
-};
+		void DataCallBack(const boost::shared_ptr<T const> & data);
 
-// #include "accel_recorder.h" // 可以通过在结果包含本文件通过编译
+		
+	protected:
+		geometry_msgs::Accel dataReceived;
+	};
+
+} // namespace DataRecorder
 
 #endif

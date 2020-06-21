@@ -9,22 +9,26 @@
 #define STRING_DURATION                  (std::string("Duration"))
 #define STRING_TIME                      (std::string("Time"))
 
-template<typename T>
-class TimeRecorder : public BaseRecorder
-{
+namespace DataRecorder {
 
-public:
-	TimeRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
-	~TimeRecorder() = default;
+	template<typename T>
+	class TimeRecorder : public BaseRecorder
+	{
 
-	std::string printfDataTitle(void);
-	std::string printfData(void);
+	public:
+		TimeRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
+		~TimeRecorder() = default;
 
-	void DataCallBack(const boost::shared_ptr<T const> & data);
+		std::string printfDataTitle(void);
+		std::string printfData(void);
 
-	
-protected:
-	T dataReceived;
-};
+		void DataCallBack(const boost::shared_ptr<T const> & data);
+
+		
+	protected:
+		T dataReceived;
+	};
+
+} // namespace DataRecorder
 
 #endif

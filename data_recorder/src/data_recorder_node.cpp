@@ -15,6 +15,8 @@
 #define TARGETFRAME  (std::string("target_frame"))
 #define SOURCEFRAME  (std::string("source_frame"))
 
+using namespace DataRecorder;
+
 std::vector<BaseRecorder*> recorderList;
 std::string filePath;
 std::ofstream recordFile;

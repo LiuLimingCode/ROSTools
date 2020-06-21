@@ -33,24 +33,26 @@
 #define STRING_UINT64    (std::string("UInt64"))
 #define STRING_UINT8     (std::string("UInt8"))
 
-template<typename T>
-class StdMsgsRecorder : public BaseRecorder
-{
+namespace DataRecorder {
 
-public:
-	StdMsgsRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
-	~StdMsgsRecorder() = default;
+	template<typename T>
+	class StdMsgsRecorder : public BaseRecorder
+	{
 
-	std::string printfDataTitle(void);
-	std::string printfData(void);
+	public:
+		StdMsgsRecorder(ros::NodeHandle& node, std::string& topicName,std::string& topicTitle);
+		~StdMsgsRecorder() = default;
 
-	void DataCallBack(const boost::shared_ptr<T const> & data);
+		std::string printfDataTitle(void);
+		std::string printfData(void);
 
-	
-protected:
-	T dataReceived;
-};
+		void DataCallBack(const boost::shared_ptr<T const> & data);
 
-// #include "std_msgs_recorder.h" // 可以通过在结果包含本文件通过编译
+		
+	protected:
+		T dataReceived;
+	};
+
+} // namespace DataRecorder
 
 #endif
