@@ -10,13 +10,30 @@ namespace DataRecorder {
 			return std::to_string(value.data);
 		}
 	};
-	
 	template <>
 	struct ToString<std_msgs::String>
 	{
 		static std::string result(std_msgs::String value)
 		{
 			return value.data;
+		}
+	};
+	template <>
+	struct ToString<std_msgs::Duration>
+	{
+		static std::string result(std_msgs::Duration value)
+		{
+			double time = value.data.sec + (double)value.data.nsec / (double)1e9;
+			return std::to_string(time);
+		}
+	};
+	template <>
+	struct ToString<std_msgs::Time>
+	{
+		static std::string result(std_msgs::Time value)
+		{
+			double time = value.data.sec + (double)value.data.nsec / (double)1e9;
+			return std::to_string(time);
 		}
 	};
 
@@ -73,6 +90,7 @@ namespace DataRecorder {
 template class DataRecorder::StdMsgsRecorder<std_msgs::Bool>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Byte>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Char>;
+template class DataRecorder::StdMsgsRecorder<std_msgs::Duration>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Float32>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Float64>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Int16>;
@@ -80,6 +98,7 @@ template class DataRecorder::StdMsgsRecorder<std_msgs::Int32>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Int64>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::Int8>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::String>;
+template class DataRecorder::StdMsgsRecorder<std_msgs::Time>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::UInt16>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::UInt32>;
 template class DataRecorder::StdMsgsRecorder<std_msgs::UInt64>;

@@ -4,7 +4,6 @@
 #include "base_recorder.h"
 #include "tf_recorder.h"
 #include "imu_recorder.h"
-#include "time_recorder.h"
 #include "accel_recorder.h"
 #include "odometry_recorder.h"
 #include "std_msgs_recorder.h"
@@ -63,14 +62,6 @@ int main(int argc, char** argv)
 		{
 			recorderList.push_back(new AccelRecorder<geometry_msgs::AccelWithCovarianceStamped>(node, recordTopic, recordTitle));
 		}
-		else if(recordType == STRING_DURATION)
-		{
-			recorderList.push_back(new TimeRecorder<std_msgs::Duration>(node, recordTopic, recordTitle));
-		}
-		else if(recordType == STRING_TIME)
-		{
-			recorderList.push_back(new TimeRecorder<std_msgs::Time>(node, recordTopic, recordTitle));
-		}
 		else if(recordType == STRING_BOOL)
 		{
 			recorderList.push_back(new StdMsgsRecorder<std_msgs::Bool>(node, recordTopic, recordTitle));
@@ -82,6 +73,10 @@ int main(int argc, char** argv)
 		else if(recordType == STRING_CHAR)
 		{
 			recorderList.push_back(new StdMsgsRecorder<std_msgs::Char>(node, recordTopic, recordTitle));
+		}
+		else if(recordType == STRING_DURATION)
+		{
+			recorderList.push_back(new StdMsgsRecorder<std_msgs::Duration>(node, recordTopic, recordTitle));
 		}
 		else if(recordType == STRING_FLOAT32)
 		{
@@ -110,6 +105,10 @@ int main(int argc, char** argv)
 		else if(recordType == STRING_STRING)
 		{
 			recorderList.push_back(new StdMsgsRecorder<std_msgs::String>(node, recordTopic, recordTitle));
+		}
+		else if(recordType == STRING_TIME)
+		{
+			recorderList.push_back(new StdMsgsRecorder<std_msgs::Time>(node, recordTopic, recordTitle));
 		}
 		else if(recordType == STRING_UINT16)
 		{
